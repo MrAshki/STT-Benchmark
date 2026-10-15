@@ -1,0 +1,12 @@
+{
+  "manifest": "data/references.csv",
+  "references_confirmed": false,
+  "ffmpeg": "ffmpeg",
+  "evaluation": {"warmup": true, "repeats": 3},
+  "models": [
+    {"id": "large-v3", "name": "Whisper Large V3", "backend": "whisper_cpp", "source": "models/large-v3/ggml-large-v3.bin", "executable": "tools/whisper.cpp/whisper-server.exe", "device": "cuda:0"},
+    {"id": "turbo", "name": "Whisper Large V3 Turbo", "backend": "whisper_cpp", "source": "models/turbo/ggml-large-v3-turbo.bin", "executable": "tools/whisper.cpp/whisper-server.exe", "device": "cuda:0"},
+    {"id": "persian-v4", "name": "Whisper Persian V4", "backend": "transformers", "source": "models/persian-v4", "device": "cuda:0"},
+    {"id": "vosk", "name": "Vosk Persian 0.42", "backend": "vosk", "source": "models/vosk-model-fa-0.42", "device": "cpu"}
+  ]
+}

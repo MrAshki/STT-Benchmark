@@ -1,0 +1,17 @@
+import React,{useState} from 'react';
+import {aggregate,fmt} from './metrics.mjs';
+export function TranscriptCards({rows,profile,lang}){
+ const [type,setType]=useState('all');const fa=lang==='fa',t=(en,faText)=>fa?faText:en;
+ const names={substitute:t('Substitution','واژهٔ متفاوت'),delete:t('Deletion','واژهٔ حذف‌شده'),insert:t('Insertion','واژهٔ اضافه')};
+ const tabs=[['all',t('All errors','همهٔ خطاها')],...Object.entries(names)];
+ return <div className="stt-transcript-content">
+ <div className="stt-error-filter" role="group" aria-label={t('Filter word errors','فیلتر خطاهای واژه')}><span>{t('Show errors','نمایش خطاها')}</span>{tabs.map(([key,label])=><button key={key} type="button" aria-pressed={type===key} onClick={()=>setType(key)}>{label}</button>)}</div>
+ <p className="stt-note">{t('The two sentences below are unchanged. Error fragments come from the selected scoring profile. Spacing and number normalization can change the word boundaries. The error filter changes the details, not WER.','دو جملهٔ زیر بدون تغییر نمایش داده می‌شوند. بخش‌های خطادار از روش امتیازدهی انتخاب‌شده می‌آیند. یکسان‌سازی فاصله یا عدد می‌تواند مرز واژه‌ها را عوض کند. فیلتر خطا فقط جزئیات را تغییر می‌دهد، نه WER را.')}</p>
+ <div className="stt-transcript-grid">{rows.map(r=>{const a=aggregate([r],profile),allErrors=(r[profile+'_alignment']||[]).filter(x=>x.type!=='equal'),errors=allErrors.filter(e=>type==='all'||e.type===type);return <section className="stt-output stt-output-simple" key={r.model_id} aria-label={r.model_name}>
+ <div className="stt-output-head"><strong dir="ltr">{r.model_name}</strong><span className="stt-pill" dir="ltr">WER {fmt(a.WER)}%</span></div>
+ <div className="stt-sentence-pair"><div><h3>{t('Original sentence · reference','جملهٔ اصلی · مرجع')}</h3><p className="stt-verbatim" dir="rtl" lang="fa">{r.reference}</p></div><div><h3>{t('Sentence produced by model','جملهٔ تولیدشدهٔ مدل')}</h3><p className="stt-verbatim" dir="rtl" lang="fa">{r.prediction===''?t('Empty output','خروجی خالی'):r.prediction||r.error||t('No output','خروجی موجود نیست')}</p></div></div>
+ {r.status==='ok'?<><p className="stt-error-totals"><span>{t('Different','متفاوت')}: <strong>{a.S}</strong></span><span>{t('Deleted','حذف‌شده')}: <strong>{a.D}</strong></span><span>{t('Added','اضافه')}: <strong>{a.I}</strong></span><span>{t('Reference words','واژهٔ مرجع')}: <strong>{a.N}</strong></span></p>
+ {errors.length?<div className="stt-error-table-wrap"><table className="stt-error-table"><caption>{t('Word differences','تفاوت واژه‌ها')}</caption><thead><tr><th>{t('Type','نوع تفاوت')}</th><th>{t('In reference','در مرجع')}</th><th>{t('In model output','در خروجی مدل')}</th></tr></thead><tbody>{errors.map((e,i)=><tr key={i}><td><span className={'stt-error-tag stt-'+e.type}>{names[e.type]}</span></td><td dir="rtl" lang="fa">{e.reference.join(' ')||t('Absent','وجود ندارد')}</td><td dir="rtl" lang="fa">{e.prediction.join(' ')||t('Absent','وجود ندارد')}</td></tr>)}</tbody></table></div>:<p className="stt-no-errors">{allErrors.length===0?t('No word errors with this scoring profile.','در این روش امتیازدهی، خطای واژه وجود ندارد.'):t('No errors of the selected type. Other error types still count in WER.','از نوع انتخاب‌شده خطایی وجود ندارد. خطاهای دیگر همچنان در WER حساب می‌شوند.')}</p>}
+ </>:<p role="status">{t('This output was not scored.','این خروجی امتیازدهی نشده است.')}</p>}
+ </section>})}</div></div>;
+}
