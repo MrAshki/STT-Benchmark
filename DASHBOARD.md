@@ -68,6 +68,14 @@ Select the chat icon near the lower corner. Open Settings. Select OpenRouter, en
 API settings do not return the key to the browser. The password field clears after loading. No key is saved in browser storage or written to disk by this form. Chat history is held in page memory. A filter or scoring-profile change clears the conversation so old answers do not appear to describe a new population. Local facts mode works without API access.
 
 
+## Assistant interface controls
+
+The assistant has chat, history, saved replies and settings views. Suggested questions fill the message input. Enter sends the question. Shift + Enter adds a line. Escape returns from settings or closes the panel. The panel can expand on desktop screens.
+
+New chat keeps the previous chat in page memory. History search, chat restore, reply bookmarks, text copy and text export work in the browser. Reloading the page or changing the benchmark filters, scoring profile or language clears the chats and saved replies. No chat is saved to disk or browser storage automatically.
+
+File attachment, web search, voice input, read aloud, other models, response length, context selection and feedback are interface previews. These controls show a preview state. The file control retains file names only; it does not read or upload files. Voice preview does not use the microphone. The existing optional OpenRouter connection remains in Settings > Connection. No new server route is required.
+
 ## Animated chat robot
 
 The chat launcher uses a local WebGL robot. Its head turns left and right. It needs no downloaded renderer or texture. Reduced-motion settings show a static pose. A fallback is available if WebGL cannot start.
