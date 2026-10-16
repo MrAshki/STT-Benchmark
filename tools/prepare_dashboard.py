@@ -38,7 +38,7 @@ def snapshot(source):
             raise ValueError('Invalid processing time.')
         if r.get('semantic_score') not in [None,0,1,2]:
             raise ValueError('Invalid semantic review label.')
-        row={k:r.get(k) for k in ['id','model_id','category','speaker_id','prompt_id','status','duration_s','reference','prediction','inference_s','semantic_score','review_reason','review_confidence','style','repeat_agreement']}
+        row={k:r.get(k) for k in ['id','model_id','category','speaker_id','prompt_id','status','duration_s','reference','prediction','inference_s','semantic_score','review_reason','review_reason_fa','review_confidence','style','repeat_agreement']}
         row.update(model_name=names[key[0]],category=r.get('category') or 'custom',speaker_id=r.get('speaker_id') or 'unknown',
                    status=r.get('status','ok'),error=r.get('error'),style=r.get('style') or 'not_reviewed',
                    review_author=data.get('author') if r.get('semantic_score') is not None else None)
@@ -82,7 +82,7 @@ def snapshot(source):
             'status':'reviewed','buildStatus':'creating','generatedAt':datetime.now(timezone.utc).isoformat(),
             'filters':[], 'queries':{'observations':{'rows':rows,'source':source_meta},'models':{'rows':model_rows,'source':source_meta}},
             'benchmark':{'source_sha256':digest(source),'source_file':str(source),'audio_origin':'See the supplied dataset manifest',
-                         'review_author':data.get('author'),'number_profile':data.get('number_profile',{}),
+                         'review_author':data.get('author'),'review_method':data.get('qualitative_review',{}),'number_profile':data.get('number_profile',{}),
                          'limitations':data.get('source_limitations',data.get('limitations',[]))}}
 
 

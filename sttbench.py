@@ -179,7 +179,8 @@ def main():
     report = commands.add_parser('report'); report.add_argument('--run', required=True)
     args = parser.parse_args()
     if args.command == 'report':
-        from reporting import agent_report
+        from reporting import agent_report, agent_review
+        agent_review(Path(args.run).resolve())
         agent_report(Path(args.run).resolve())
     else:
         cfg = configuration(args.config)

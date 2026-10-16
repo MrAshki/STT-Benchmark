@@ -98,7 +98,8 @@ class CppEngine:
         try:
             self.process = subprocess.Popen(args, cwd=directory, stdout=self.log, stderr=self.log,
                 creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
-            deadline = time.monotonic() + 180
+            startup_timeout = int(spec.get('startup_timeout_s', 600))
+            deadline = time.monotonic() + startup_timeout
             while time.monotonic() < deadline:
                 if self.process.poll() is not None:
                     raise RuntimeError('Native server stopped: ' + self.log_path.read_text(encoding='utf-8', errors='replace')[-3000:])
@@ -112,7 +113,7 @@ class CppEngine:
                     return
                 except requests.ConnectionError:
                     time.sleep(.2)
-            raise TimeoutError('Native server did not start within 180 seconds.')
+            raise TimeoutError('Native server did not start within '+str(startup_timeout)+' seconds.')
         except Exception:
             self.close()
             raise

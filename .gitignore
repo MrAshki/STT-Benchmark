@@ -17,5 +17,6 @@ test_chat_settings.py
 tools/build_review_report.py
 tools/import_local_dataset.py
 *.log
+*.bak
 !models/.gitkeep
 !results/.gitkeep
