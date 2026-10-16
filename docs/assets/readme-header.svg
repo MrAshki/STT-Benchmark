@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+  <title id="title">Persian STT Bench</title>
+  <desc id="desc">A speech waveform leads to four model paths and a checked evidence record.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101b32"/><stop offset="1" stop-color="#070d1b"/></linearGradient>
+    <linearGradient id="accent"><stop stop-color="#59e1d9"/><stop offset="1" stop-color="#8aa7ff"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#8aa7ff" stroke-opacity=".06"/></pattern>
+  </defs>
+  <rect width="1280" height="360" rx="24" fill="url(#bg)"/>
+  <rect width="1280" height="360" rx="24" fill="url(#grid)"/>
+  <path d="M48 56H108" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <text x="48" y="96" fill="#78dfde" font-size="13" font-weight="600" letter-spacing="3">PERSIAN SPEECH RECOGNITION</text>
+    <text x="45" y="165" fill="#f1f5ff" font-size="58" font-weight="700" letter-spacing="-2">STT Bench</text>
+    <text x="48" y="207" fill="#bdcbe0" font-size="20">From recorded speech to evidence you can inspect.</text>
+    <g font-size="13" font-weight="600" text-anchor="middle">
+      <rect x="48" y="256" width="138" height="34" rx="17" fill="#162e3d" stroke="#2b5664"/><text x="117" y="278" fill="#8ee9df">LOCAL MODELS</text>
+      <rect x="198" y="256" width="142" height="34" rx="17" fill="#1b2945" stroke="#34496b"/><text x="269" y="278" fill="#adc2ff">WER / CER / RTF</text>
+      <rect x="352" y="256" width="146" height="34" rx="17" fill="#24223e" stroke="#494366"/><text x="425" y="278" fill="#c7beff">AI TEXT REVIEW</text>
+    </g>
+  </g>
+  <g fill="none" stroke="#3c5575" stroke-width="2">
+    <rect x="709" y="99" width="105" height="164" rx="20" fill="#101e32"/>
+    <path d="M814 181H850V83H905M850 149H905M850 215H905M850 181V281H905"/>
+    <path d="M1025 83H1060V181H1091M1025 149H1060M1025 215H1060M1025 281H1060V181"/>
+  </g>
+  <g stroke="url(#accent)" stroke-width="4" stroke-linecap="round">
+    <path d="M727 170V192M738 154V208M749 138V224M760 162V200M771 146V216M782 158V204M793 174V188"/>
+  </g>
+  <g font-family="Segoe UI,Arial,sans-serif" font-size="13" text-anchor="middle">
+    <g fill="#142239" stroke="#405778">
+      <rect x="905" y="62" width="120" height="42" rx="10"/><rect x="905" y="128" width="120" height="42" rx="10"/>
+      <rect x="905" y="194" width="120" height="42" rx="10"/><rect x="905" y="260" width="120" height="42" rx="10"/>
+    </g>
+    <g fill="#d4e0f2"><text x="965" y="88">Large V3</text><text x="965" y="154">Turbo</text><text x="965" y="220">Persian V4</text><text x="965" y="286">Vosk</text></g>
+    <rect x="1091" y="136" width="128" height="90" rx="16" fill="#102e35" stroke="#397b7b"/>
+    <path d="M1143 163l8 8 15-17" fill="none" stroke="#72e1cc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1155" y="199" fill="#adf2e7">EVIDENCE</text>
+  </g>
+</svg>
